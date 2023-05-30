@@ -3,6 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
+-- Generation Time: May 30, 2023 at 09:28 PM
 -- Server version: 8.0.33
 -- PHP Version: 8.1.17
 
@@ -166,7 +167,8 @@ CREATE TABLE `user` (
   `fond` varchar(255) DEFAULT NULL,
   `tel` varchar(255) DEFAULT NULL,
   `pseudo` varchar(255) DEFAULT NULL,
-  `age` int DEFAULT NULL
+  `age` int DEFAULT NULL,
+  `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -267,10 +269,16 @@ ALTER TABLE `vendeur`
 --
 
 --
+-- AUTO_INCREMENT for table `article`
+--
+ALTER TABLE `article`
+  MODIFY `ID_article` int NOT NULL AUTO_INCREMENT;
+
+--
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID_user` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- Constraints for dumped tables
@@ -304,15 +312,15 @@ ALTER TABLE `auser`
 -- Constraints for table `enchere`
 --
 ALTER TABLE `enchere`
-  ADD CONSTRAINT `enchere_ibfk_1` FOREIGN KEY (`ID_enchere`) REFERENCES `article` (`ID_article`) ON DELETE CASCADE ON UPDATE RESTRICT,
-  ADD CONSTRAINT `enchere_ibfk_2` FOREIGN KEY (`ID_acheteur`) REFERENCES `acheteur` (`ID_acheteur`) ON DELETE SET NULL ON UPDATE RESTRICT;
+  ADD CONSTRAINT `enchere_ibfk_2` FOREIGN KEY (`ID_acheteur`) REFERENCES `acheteur` (`ID_acheteur`) ON DELETE SET NULL ON UPDATE RESTRICT,
+  ADD CONSTRAINT `enchere_ibfk_3` FOREIGN KEY (`ID_enchere`) REFERENCES `article` (`ID_article`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `histo`
 --
 ALTER TABLE `histo`
-  ADD CONSTRAINT `histo_ibfk_1` FOREIGN KEY (`ID_article`) REFERENCES `article` (`ID_article`) ON DELETE RESTRICT ON UPDATE RESTRICT,
-  ADD CONSTRAINT `histo_ibfk_2` FOREIGN KEY (`ID_histo`) REFERENCES `user` (`ID_user`) ON DELETE RESTRICT ON UPDATE RESTRICT;
+  ADD CONSTRAINT `histo_ibfk_2` FOREIGN KEY (`ID_histo`) REFERENCES `user` (`ID_user`) ON DELETE RESTRICT ON UPDATE RESTRICT,
+  ADD CONSTRAINT `histo_ibfk_3` FOREIGN KEY (`ID_article`) REFERENCES `article` (`ID_article`) ON DELETE RESTRICT ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `infop`
