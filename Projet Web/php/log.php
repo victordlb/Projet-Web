@@ -69,8 +69,8 @@ function inscription_utilisateur($pseudo, $prenom,$nom,$mail,$age,$tel,$option, 
         try
         {
             // Insertion de l'utilisateur
-            $stmtUtilisateur = mysqli_prepare($db_handle, "INSERT INTO user (nom, prenom, mail, password, tel, pseudo, age, avatar) VALUES (?, ?, ?, ?, ?, ?, ?, ?)");
-            mysqli_stmt_bind_param($stmtUtilisateur, 'ssssssis', $nom, $prenom, $mail,$password, $tel, $pseudo, $age, $file_name);
+            $stmtUtilisateur = mysqli_prepare($db_handle, "INSERT INTO user (nom, prenom, mail, password, tel, pseudo, age, avatar, status) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            mysqli_stmt_bind_param($stmtUtilisateur, 'ssssssiss', $nom, $prenom, $mail,$password, $tel, $pseudo, $age, $file_name, $option);
 
             mysqli_stmt_execute($stmtUtilisateur);
             $ID_Utilisateur = mysqli_insert_id($db_handle);

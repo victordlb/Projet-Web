@@ -6,7 +6,7 @@ services:
     build: './build/php'
     volumes:
       - .:/var/www/html
-    depends_on:
+    links:
       - db
   db:
     ports:
@@ -14,13 +14,14 @@ services:
     build: './build/mysql'
     environment:
       MYSQL_ROOT_PASSWORD: mypassword
-      MYSQL_DATABASE: my-website
+      MYSQL_DATBASE: my-website
     volumes:
       - dbData:/var/lib/mysql
-      - ./bdd.sql:/docker-entrypoint-initdb.d/bdd.sql
 
   phpmyadmin:
     image: phpmyadmin/phpmyadmin:latest
+    links:
+      - db
     environment:
       PMA_ARBITRARY: 1
       PMA_HOST: db
@@ -28,9 +29,7 @@ services:
       UPLOAD_LIMIT: 20M
     ports:
       - 8899:80
-    depends_on:
-      - db
-
 volumes:
+  app:
   dbData:
 
