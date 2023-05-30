@@ -48,6 +48,7 @@
             padding: 0.3em 0.75em;
         }
     </style>
+
 </head>
 <body>
     <nav>
@@ -82,10 +83,16 @@
             <option value="">Tous les prix</option>
             <option value="DESC">Plus cher</option>
             <option value="ASC">Moins cher</option>
-        </select>
+        </select></br>
+
+        <input type="text" name="motcle" placeholder="Rechercher un article"></br>
+
+        <label for="prixMax">Prix maximal :</label>
+        <span id="prixMaxValue">0</span>
+        <input type="range" name="prixMax" id="prixMax" min="0" max="1000" step="10">
 
         <!-- Bouton de validation -->
-        <input type="submit" value="Appliquer les filtres">
+        <input type="submit" value="Appliquer les filtres" style="margin-top: 10px;">
     </form>
 
     <div id="container">
@@ -119,6 +126,17 @@
                 if (!empty($_POST['prix'])) {
                     $prix = $_POST['prix'];
                     $requete .= " ORDER BY date $prix";
+                }
+
+                if (!empty($_POST['motcle'])) {
+                    $motcle = $_POST['motcle'];
+                    $motcle = mysqli_real_escape_string($db_handle, $motcle);
+                    $requete .= " AND titre LIKE %$motcle%";
+                }
+
+                if (!empty($_POST['prixMax'])) {
+                    $prixMax = $_POST['prixMax'];
+                    $requete .= " AND prix <= $prixMax";
                 }
 
                 if ($error) {
@@ -171,6 +189,15 @@
             ?>           
         </div>
     </div>
+
+    <script>
+        var prixMaxInput = document.getElementById("prixMax");
+        var prixMaxValue = document.getElementById("prixMaxValue");
+
+        prixMaxInput.addEventListener("input", function() {
+            prixMaxValue.textContent = prixMaxInput.value;
+        });
+    </script>
 
 
 
