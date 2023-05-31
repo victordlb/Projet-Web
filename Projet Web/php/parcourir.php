@@ -122,7 +122,7 @@
                 // Application des filtres
                 if (!empty($_POST['categorie'])) {
                     $categorie = $_POST['categorie'];
-                    $categorieCondition = " AND categorie = '$categorie'";
+                    $categorieCondition = " categorie = '$categorie'";
                 }
                 
                 if (!empty($_POST['date'])) {
@@ -138,12 +138,12 @@
                 if (!empty($_POST['motcle'])) {
                     $motcle = $_POST['motcle'];
                     $motcle = mysqli_real_escape_string($db_handle, $motcle);
-                    $motcleCondition = " AND titre LIKE %$motcle%";
+                    $motcleCondition = " titre LIKE %$motcle%";
                 }
 
                 if (!empty($_POST['prixMax'])) {
                     $prixMax = $_POST['prixMax'];
-                    $prixMaxCondition = " AND prix <= $prixMax";
+                    $prixMaxCondition = " prix <= $prixMax";
                 }
 
                 if (!empty($categorieCondition)) {
