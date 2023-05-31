@@ -8,12 +8,13 @@ include_once 'log.php' ;
     <meta charset="UTF-8">
     <script src="../js/log.js"></script>
     <link rel="stylesheet" href="../css/style-compte.css">
+    <link rel="stylesheet" href="../css/style-general.css">
     <title>Inscription</title>
 </head>
 <body>
     <h1>Inscription</h1>
     <div>
-        <div>
+        <div class="container">
             <form method="post" action="" onsubmit="return validerMotDePasse()" enctype="multipart/form-data">
                 <table>
                     <tr>
@@ -69,9 +70,9 @@ include_once 'log.php' ;
                         </td> 
                     </tr>
 
-                    <tr>
-                        <td><input type="submit" name="inscription" value="Valider"></td>
-                    </tr>
+                    <div class="submit-button">
+                        <input type="submit" name="inscription" value="Valider">
+                    </div>
                 </table>
             </form>
         </div>
