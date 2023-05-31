@@ -1,5 +1,22 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f7fa;
+    margin: 0;
+    padding: 0;
+}
+
+form {
+    width: 60%;
+    margin: 0 auto;
+    background-color: #ffffff;
+    padding: 20px;
+    border-radius: 8px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
 h1{
     text-align: center;
+    color: #146bae;
 }
 
 /* Style de base pour la barre de navigation */
@@ -50,12 +67,12 @@ table {
 table td {
     padding: 8px;
     text-align: center;
-    border-bottom: 1px solid #ddd;
 }
   
 table tr:hover {
     background-color: #f5f5f5;
 }
+
 
 table td:first-child {
     color: #000000; /* Couleur de la colonne de gauche */
@@ -81,8 +98,29 @@ input[type="submit"] {
     background-color: #4CAF50;
     color: white;
     cursor: pointer;
+    border-right: 5%;
 }
   
 input[type="submit"]:hover {
     background-color: #45a049;
+}
+
+.eye-icon {
+    font-size: 18px;
+    cursor: pointer;
+    border: none;
+    background-color: transparent;
+}
+
+#nvAttributs {
+    padding-top: 10px;
+}
+
+a {
+    color: #146bae;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
 }
