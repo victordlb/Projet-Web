@@ -69,10 +69,11 @@ include_once 'log.php' ;
                             
                         </td> 
                     </tr>
+                    <tr>
+                        <td><a href=../php/connexion.php>Retourner a la page de connexion</a></td>
+                        <td><input type="submit" name="inscription" value="Valider"></td>
+                    </tr>
 
-                    <div class="submit-button">
-                        <input type="submit" name="inscription" value="Valider">
-                    </div>
                 </table>
             </form>
         </div>
@@ -100,11 +101,11 @@ include_once 'log.php' ;
         $photo = isset($_FILES["photo"]) ? $_FILES["photo"] : "";
         $file_name = "../images/" . $photo['name'];
 
-        $typec = isset($_FILES["typec"]) ? $_FILES["typec"] : "";
-        $numeroc = isset($_FILES["numeroc"]) ? $_FILES["numeroc"] : "";
-        $nomc = isset($_FILES["nomc"]) ? $_FILES["nomc"] : "";
-        $datec = isset($_FILES["expirationc"]) ? $_FILES["expirationc"] : "";
-        $cvc = isset($_FILES["cvc"]) ? $_FILES["cvc"] : "";
+        $typec = isset($_POST["typec"]) ? $_POST["typec"] : "";
+        $numeroc = isset($_POST["numeroc"]) ? $_POST["numeroc"] : "";
+        $nomc = isset($_POST["nomc"]) ? $_POST["nomc"] : "";
+        $datec = isset($_POST["expirationc"]) ? $_POST["expirationc"] : "";
+        $cvc = isset($_POST["cvc"]) ? $_POST["cvc"] : "";
 
         $password = isset($_POST['password2']) ? $_POST["password2"] : "";
         $password_crypte = password_hash($password, PASSWORD_DEFAULT);
