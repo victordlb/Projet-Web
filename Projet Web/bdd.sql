@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: May 30, 2023 at 09:28 PM
+-- Generation Time: May 30, 2023 at 11:33 PM
 -- Server version: 8.0.33
 -- PHP Version: 8.1.17
 
@@ -108,8 +108,9 @@ CREATE TABLE `infop` (
   `prenom` varchar(255) DEFAULT NULL,
   `nom` varchar(255) DEFAULT NULL,
   `cvc` int DEFAULT NULL,
-  `expire` date DEFAULT NULL,
-  `num` int DEFAULT NULL
+  `expire` varchar(255) DEFAULT NULL,
+  `num` varchar(255) DEFAULT NULL,
+  `type` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------

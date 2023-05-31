@@ -8,7 +8,8 @@ $date1 = date('d/m/Y');
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Document</title>
+    <link rel="stylesheet" href="../css/style-general.css">
+    <title>Ajout</title>
 </head>
 <body>
     <h1>Ajout d'article</h1>
