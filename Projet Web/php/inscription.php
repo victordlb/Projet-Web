@@ -7,6 +7,7 @@ include_once 'log.php' ;
 <head>
     <meta charset="UTF-8">
     <script src="../js/log.js"></script>
+    <link rel="stylesheet" href="../css/style-compte.css">
     <title>Inscription</title>
 </head>
 <body>
@@ -94,14 +95,21 @@ include_once 'log.php' ;
         $ville = isset($_POST["ville"]) ? $_POST["ville"] : "";
         $codep = isset($_POST["codep"]) ? $_POST["codep"] : "";
         $pays = isset($_POST["pays"]) ? $_POST["pays"] : "";
+
         $photo = isset($_FILES["photo"]) ? $_FILES["photo"] : "";
         $file_name = "../images/" . $photo['name'];
+
+        $typec = isset($_FILES["typec"]) ? $_FILES["typec"] : "";
+        $numeroc = isset($_FILES["numeroc"]) ? $_FILES["numeroc"] : "";
+        $nomc = isset($_FILES["nomc"]) ? $_FILES["nomc"] : "";
+        $datec = isset($_FILES["expirationc"]) ? $_FILES["expirationc"] : "";
+        $cvc = isset($_FILES["cvc"]) ? $_FILES["cvc"] : "";
 
         $password = isset($_POST['password2']) ? $_POST["password2"] : "";
         $password_crypte = password_hash($password, PASSWORD_DEFAULT);
 
 
-        if(inscription_utilisateur($pseudo, $prenom,$nom,$mail,$age,$tel,$option, $password_crypte, $adresse, $ville, $codep, $pays, $file_name)){
+        if(inscription_utilisateur($pseudo, $prenom,$nom,$mail,$age,$tel,$option, $password_crypte, $adresse, $ville, $codep, $pays, $file_name, $typec,$numeroc,$nomc,$datec,$cvc)){
             $valid = true;
         }
         else
@@ -109,6 +117,8 @@ include_once 'log.php' ;
             $valid = false;
         }
     }
+
+
 
     if($valid){
         echo "</br><a href=../php/connexion.php>Retourner a la page de connexion</a>";
