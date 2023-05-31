@@ -28,6 +28,12 @@ function ajout_attributs(){
   nvl_attributs.innerHTML = "";
 
   if(option === "acheteur"){
+
+    var p1 = document.createElement("p");
+    p1.textContent = "Vos informations de livraison";
+    p1.id = "gras";
+    nvl_attributs.appendChild(p1);
+
     var td1 = document.createElement("td");
     td1.textContent = "Adresse";
     nvl_attributs.appendChild(td1);
@@ -71,6 +77,76 @@ function ajout_attributs(){
     input4.placeholder = "Pays de cette adresse";
     input4.setAttribute("required", "");
     nvl_attributs.appendChild(input4);
+
+    var p2 = document.createElement("p");
+    p2.textContent = "Vos informations de paiement";
+    p2.id = "gras";
+    nvl_attributs.appendChild(p2);
+
+   // var form = document.createElement("td");
+
+    // Choix de la carte
+    var carteLabel = document.createElement("td");
+    carteLabel.textContent = "Choix de la carte :";
+    nvl_attributs.appendChild(carteLabel);
+
+    var carteSelect = document.createElement("select");
+    carteSelect.name = "typec";
+
+    var cartes = ["Visa", "MasterCard", "AmericanExpress"];
+    for (var i = 0; i < cartes.length; i++) {
+        var carteOption = document.createElement("option");
+        carteOption.value = cartes[i];
+        carteOption.textContent = cartes[i];
+        carteSelect.appendChild(carteOption);
+    }
+
+    nvl_attributs.appendChild(carteSelect);
+
+
+    // Numéro de carte
+    var numeroLabel = document.createElement("td");
+    numeroLabel.textContent = "Numéro de carte :";
+    nvl_attributs.appendChild(numeroLabel);
+
+
+    var numeroInput = document.createElement("input");
+    numeroInput.type = "text";
+    numeroInput.name = "numeroc";
+    nvl_attributs.appendChild(numeroInput);
+
+
+    // Nom du titulaire
+    var nomLabel = document.createElement("td");
+    nomLabel.textContent = "Nom du titulaire :";
+    nvl_attributs.appendChild(nomLabel);
+
+    var nomInput = document.createElement("input");
+    nomInput.type = "text";
+    nomInput.name = "nomc";
+    nvl_attributs.appendChild(nomInput);
+
+
+    // Date d'expiration
+    var expirationLabel = document.createElement("td");
+    expirationLabel.textContent = "Date d'expiration (mois et année) :";
+    nvl_attributs.appendChild(expirationLabel);
+
+    var expirationInput = document.createElement("input");
+    expirationInput.type = "month";
+    expirationInput.name = "expirationc";
+    nvl_attributs.appendChild(expirationInput);
+
+    // CVC
+    var cvcLabel = document.createElement("td");
+    cvcLabel.textContent = "CVC :";
+    nvl_attributs.appendChild(cvcLabel);
+
+    var cvcInput = document.createElement("input");
+    cvcInput.type = "text";
+    cvcInput.name = "cvc";
+    nvl_attributs.appendChild(cvcInput);
+
 
   }
 }

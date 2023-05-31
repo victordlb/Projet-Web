@@ -49,7 +49,7 @@ function validationinformation($id, $password)
     return False; // L'utilisateur existe mais ses informations sont incorrecte
 }
 
-function inscription_utilisateur($pseudo, $prenom,$nom,$mail,$age,$tel,$option, $password, $adresse, $ville, $codep, $pays, $file_name)
+function inscription_utilisateur($pseudo, $prenom,$nom,$mail,$age,$tel,$option, $password, $adresse, $ville, $codep, $pays, $file_name, $typec,$numeroc,$nomc,$datec,$cvc)
 {
     $database = "piscine";
     $db_handle = mysqli_connect('db', 'root', 'mypassword', $database);
@@ -86,6 +86,10 @@ function inscription_utilisateur($pseudo, $prenom,$nom,$mail,$age,$tel,$option, 
                 // Insertion de l'acheteur
                 $stmtVendeur = mysqli_prepare($db_handle, "INSERT INTO acheteur (ID_acheteur, adresse, ville, codep, pays) VALUES (?, ?, ?, ?, ?)");
                 mysqli_stmt_bind_param($stmtVendeur, 'issss', $ID_Utilisateur, $adresse, $ville, $codep, $pays);
+
+                $stmtCarte = mysqli_prepare($db_handle, "INSERT INTO infop (ID_info, type, num, nom, expire, cvc) VALUES (?, ?, ?, ?, ?, ?)");
+                mysqli_stmt_bind_param($stmtCarte, 'issssi', $ID_Utilisateur, $typec, $numeroc, $nomc, $datec, $cvc);
+                mysqli_stmt_execute($stmtCarte);
             }
 
             mysqli_stmt_execute($stmtVendeur);

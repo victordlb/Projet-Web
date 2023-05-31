@@ -7,6 +7,7 @@ include_once 'log.php' ;
 <head>
     <meta charset="UTF-8">
     <script src="../js/log.js"></script>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet">
     <title>Accueil</title>
 </head>
 <body>
