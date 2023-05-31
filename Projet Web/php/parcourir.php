@@ -86,6 +86,12 @@
             <option value="ASC">Moins cher</option>
         </select>
 
+        <input type="text" name="motcle" placeholder="Rechercher un article"></br>
+
+        <label for="prixMax">Prix maximal :</label>
+        <span id="prixMaxValue"></span>
+        <input type="range" name="prixMax" id="prixMax" min="0" max="1000" step="10">
+
         <!-- Bouton de validation -->
         <input type="submit" value="Appliquer les filtres">
     </form>
@@ -103,6 +109,12 @@
             // Si le BDD existe, faire le traitement
             if ($db_found) {
                 $error = "";
+
+                $categorieCondition = "";
+                $dateCondition = "";
+                $prixCondition = "";
+                $motcleCondition = "";
+                $prixMaxCondition = "";
                 
                 // Construction de la requête SQL
                 $requete = "SELECT * FROM article WHERE 1=1";
@@ -110,17 +122,61 @@
                 // Application des filtres
                 if (!empty($_POST['categorie'])) {
                     $categorie = $_POST['categorie'];
-                    $requete .= " AND categorie = '$categorie'";
+                    $categorieCondition = " AND categorie = '$categorie'";
                 }
                 
                 if (!empty($_POST['date'])) {
                     $date = $_POST['date'];
-                    $requete .= " ORDER BY date $date";
+                    $dateCondition = " date $date";
                 }
                 
                 if (!empty($_POST['prix'])) {
                     $prix = $_POST['prix'];
-                    $requete .= " ORDER BY date $prix";
+                    $prixCondition = " date $prix";
+                }
+
+                if (!empty($_POST['motcle'])) {
+                    $motcle = $_POST['motcle'];
+                    $motcle = mysqli_real_escape_string($db_handle, $motcle);
+                    $motcleCondition = " AND titre LIKE %$motcle%";
+                }
+
+                if (!empty($_POST['prixMax'])) {
+                    $prixMax = $_POST['prixMax'];
+                    $prixMaxCondition = " AND prix <= $prixMax";
+                }
+
+                if (!empty($categorieCondition)) {
+                    $requete .= " AND $categorieCondition";
+                }
+                
+                if (!empty($motcleCondition)) {
+                    $requete .= " AND $motcleCondition";
+                }
+                
+                if (!empty($prixMaxCondition)) {
+                    $requete .= " AND $prixMaxCondition";
+                }
+
+                if (!empty($dateCondition) AND !empty($prixCondition)) {
+                    
+                    $requete .= " ORDER BY";
+                    if (!empty($prixCondition)) {
+                        $requete .= " $prixCondition ,";
+                    }
+                    if (!empty($dateCondition)) {
+                        $requete .= " $dateCondition";
+                    }
+                }
+                if (!empty($dateCondition) OR !empty($prixCondition)) {
+                    
+                    $requete .= " ORDER BY";
+                    if (!empty($prixCondition)) {
+                        $requete .= " $prixCondition";
+                    }
+                    if (!empty($dateCondition)) {
+                        $requete .= " $dateCondition";
+                    }
                 }
 
                 if ($error) {
@@ -174,7 +230,14 @@
         </div>
     </div>
 
+    <script>
+        var prixMaxInput = document.getElementById("prixMax");
+        var prixMaxValue = document.getElementById("prixMaxValue");
 
+        prixMaxInput.addEventListener("input", function() {
+            prixMaxValue.textContent = prixMaxInput.value;
+        });
+    </script>
 
 </body>
 </html>
