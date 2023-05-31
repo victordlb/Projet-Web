@@ -1,63 +1,42 @@
+<?php
+include '../php/db.php' ;
+$data = recup_data();
+$vendeur = true;
+while($auser = mysqli_fetch_assoc($data))
+{
+    if($auser['status'] == 'acheteur')
+    {
+        $vendeur = false;
+    }
+}
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <title>Parcours</title>
     <link rel="stylesheet" href="../css/style-general.css">
-
-    <style>
-        #container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5em;
-        }
-
-        h2, h3, h4 {
-            display: flex;
-            gap: 0.5em;
-            align-items: center;
-            margin-top: 20px;
-            margin-bottom: 20px;
-            justify-content: center;
-        }
-
-        h2 {
-            color: white;
-            filter: drop-shadow(0 0 0.25em rgba(0, 0, 0, 0.8));
-        }
-
-        #content-container {
-            padding: 0.5em;
-            border: 0.1em solid rgb(200, 200, 200);
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 0.5em;
-        }
-
-        table {
-            padding: 0.5em;
-            border: 0.1em solid rgb(200, 200, 200);
-            background-color: rgba(255, 255, 255, 0.9);
-            border-radius: 0.5em;
-            border-collapse: collapse;
-        }
-
-        th, td {
-            text-align: center;
-            padding: 0.3em 0.75em;
-        }
-    </style>
+    <link rel="stylesheet" href="../css/style-liste.css">
 </head>
 <body>
     <h1>Nos articles</h1>
+    <a href=../php/connexion.php>Retourner a la page de connexion</a>
     <nav class="navbar">
         <ul>
             <li><a href="../php/accueil.php">Accueil</a></li>
             <li><a href="../php/parcourir.php">Tout Parcourir</a></li>
             <li><a href="../php/notifications.php">Notifications</a></li>
-            <li><a href="../php/panier.php">Panier</a></li>
+            <?php
+                if($vendeur)
+                {
+                    echo "<li><a href='../php/vosArticles.php'>Vos Articles</a></li>";
+                }
+                else
+                {
+                    echo "<li><a href='../php/panier.php'>Panier</a></li>";
+                }
+            ?>
             <li><a href="../php/compte.php">Votre Compte</a></li>
         </ul>
     </nav>
@@ -188,7 +167,7 @@
 
                     // Regarder s'il y a des resultats
                     if (!$results || mysqli_num_rows($results) == 0) {
-                        echo "<p>No player found.</p>";
+                        echo "<p>Aucun article en vente.</p>";
                     } else {
                         // On affiche les joueurs
                         echo '
@@ -215,6 +194,10 @@
                             echo "<td></td>";
                             echo "<td>" . $data['categorie'] . "</td>";
                             echo "<td>" . $data['date'] . "</td>";
+                            if(!$vendeur)
+                            {
+                                echo '<td><form method="get" action="ajoutPanier.php"><button type="submit" name="ajout" value="' . $data['ID_article'] . '">Ajouter au panier</button></td></form>';
+                            }
                             echo "</tr>";
                         }
                         echo "</table>";

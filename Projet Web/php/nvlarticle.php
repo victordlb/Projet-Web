@@ -101,7 +101,7 @@ $date1 = date('d/m/Y');
     }
     ?>
 
-    <a href="../php/compte.php">Quitter l'ajout d'article</a>
+    <a href="../php/vosArticles.php">Quitter l'ajout d'article</a>
     
 </body>
 </html>
