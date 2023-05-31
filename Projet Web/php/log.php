@@ -80,19 +80,21 @@ function inscription_utilisateur($pseudo, $prenom,$nom,$mail,$age,$tel,$option, 
                 // Insertion du vendeur
                 $stmtVendeur = mysqli_prepare($db_handle, "INSERT INTO vendeur (ID_vendeur) VALUES (?)");
                 mysqli_stmt_bind_param($stmtVendeur, 'i', $ID_Utilisateur);
+                mysqli_stmt_execute($stmtVendeur);
             }
             if($option == 'acheteur')
             {
                 // Insertion de l'acheteur
                 $stmtVendeur = mysqli_prepare($db_handle, "INSERT INTO acheteur (ID_acheteur, adresse, ville, codep, pays) VALUES (?, ?, ?, ?, ?)");
                 mysqli_stmt_bind_param($stmtVendeur, 'issss', $ID_Utilisateur, $adresse, $ville, $codep, $pays);
+                mysqli_stmt_execute($stmtVendeur);
 
                 $stmtCarte = mysqli_prepare($db_handle, "INSERT INTO infop (ID_info, type, num, nom, expire, cvc) VALUES (?, ?, ?, ?, ?, ?)");
                 mysqli_stmt_bind_param($stmtCarte, 'issssi', $ID_Utilisateur, $typec, $numeroc, $nomc, $datec, $cvc);
                 mysqli_stmt_execute($stmtCarte);
             }
 
-            mysqli_stmt_execute($stmtVendeur);
+            
 
             // Validation de la transaction
             mysqli_commit($db_handle);
