@@ -113,6 +113,7 @@ function ajout_attributs(){
     var numeroInput = document.createElement("input");
     numeroInput.type = "text";
     numeroInput.name = "numeroc";
+    numeroInput.setAttribute("required", "");
     nvl_attributs.appendChild(numeroInput);
 
 

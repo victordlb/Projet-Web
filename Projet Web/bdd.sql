@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: May 30, 2023 at 11:33 PM
+-- Generation Time: May 31, 2023 at 11:43 AM
 -- Server version: 8.0.33
 -- PHP Version: 8.1.17
 
@@ -327,7 +327,7 @@ ALTER TABLE `histo`
 -- Constraints for table `infop`
 --
 ALTER TABLE `infop`
-  ADD CONSTRAINT `infop_ibfk_1` FOREIGN KEY (`ID_info`) REFERENCES `acheteur` (`ID_acheteur`) ON DELETE CASCADE ON UPDATE RESTRICT;
+  ADD CONSTRAINT `infop_ibfk_1` FOREIGN KEY (`ID_info`) REFERENCES `acheteur` (`ID_acheteur`) ON DELETE CASCADE;
 
 --
 -- Constraints for table `nego`

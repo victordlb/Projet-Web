@@ -94,8 +94,6 @@ function inscription_utilisateur($pseudo, $prenom,$nom,$mail,$age,$tel,$option, 
                 mysqli_stmt_execute($stmtCarte);
             }
 
-            
-
             // Validation de la transaction
             mysqli_commit($db_handle);
 
