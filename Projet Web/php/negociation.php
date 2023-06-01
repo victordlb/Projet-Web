@@ -24,25 +24,20 @@
         <div id="content-container">
             <?php
             $data = recup_data();
+            $id_user = mysqli_fetch_assoc($data);
 
             $database = "piscine";
             $db_handle = mysqli_connect('db', 'root', 'mypassword', $database);
             $db_found = mysqli_select_db($db_handle, $database);
 
-
             // Si la BDD existe, effectuer le traitement
             if ($db_found) {
                 $error = "";
-                
                 if($vendeur) {
-                    $requete = "SELECT * FROM nego n
-                    INNER JOIN article a ON n.ID_article = a.ID_article
-                    INNER JOIN vendeur v ON a.ID_vendeur = v.ID_vendeur
-                    WHERE v.ID_vendeur = $data;";
+                    $requete = "SELECT * FROM nego WHERE ID_article IN (SELECT ID_article FROM article WHERE ID_vendeur = '{$id_user['ID_user']}')";
                 } else {
-                    $requete = "SELECT * FROM nego WHERE ID_acheteur = $data";
+                    $requete = "SELECT * FROM nego WHERE ID_acheteur = '{$id_user['ID_user']}'";
                 }
-                
                 if ($error) {
                     // S'il y a eu une erreur, on l'affiche
                     echo "<p>Error: $error</p>";
@@ -52,11 +47,11 @@
 
                     // Regarder s'il y a des résultats
                     if (!$results || mysqli_num_rows($results) == 0) {
-                        echo "<p>No player found.</p>";
+                        echo "<p>No nego found.</p>";
                     } else {
                         // On affiche les joueurs
                         echo '
-                            <form method="post" action="traitement.php">
+                            
                                 <table>
                                     <tr>
                                         <th>Titre</th>
@@ -79,7 +74,6 @@
                             echo "</tr>";
                         }
                         echo "</table>";
-                        echo "</form>";
                     }
                 }
             } else {

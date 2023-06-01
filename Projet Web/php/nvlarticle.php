@@ -46,6 +46,17 @@ $date1 = date('d/m/Y');
                         </td>
                     </tr>
                     <tr>
+                        <td>type de vente</td>
+                        <td>
+                            <select id="options2" name="options2" required onchange="ajout_attributs()">
+                                <option value="" disabled selected hidden>Sélectionnez une option</option>
+                                <option value="direct">direct</option>
+                                <option value="nego">nego</option>
+                                <option value="enchere">enchere</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
                         <td><input type="submit" name="Ajout" value="Valider"></td>
                     </tr>
                 </table>
@@ -62,15 +73,16 @@ $date1 = date('d/m/Y');
         $date = date('Y-m-d');
         $photo = isset($_POST["photo"]) ? $_POST["photo"] : "";
         $categorie = isset($_POST["options"]) ? $_POST["options"] : "";
+        $type = isset($_POST["options2"]) ? $_POST["options2"] : "";
 
         while($auser = mysqli_fetch_assoc($data))
         {
             $id_vendeur = $auser['ID_user'];
         }
-        ajout_article($id_vendeur, $titre, $prix, $description, $date, $photo, $categorie);
+        ajout_article($id_vendeur, $titre, $prix, $description, $date, $photo, $categorie, $type);
     }
 
-    function ajout_article($id_vendeur, $titre, $prix, $description, $date, $photo, $categorie)
+    function ajout_article($id_vendeur, $titre, $prix, $description, $date, $photo, $categorie, $type)
     {
         $database = "piscine";
         $db_handle = mysqli_connect('db', 'root', 'mypassword', $database);
@@ -82,7 +94,7 @@ $date1 = date('d/m/Y');
         else
         {
             $error = "";
-            $requete = "INSERT INTO article (ID_vendeur, titre, prix, description, date, photo, categorie) VALUES ('$id_vendeur','$titre', '$prix', '$description', '$date', '$photo', '$categorie')";
+            $requete = "INSERT INTO article (ID_vendeur, titre, prix, description, date, photo, categorie) VALUES ('$id_vendeur','$titre', '$prix', '$description', '$date', '$photo', '$categorie', '$type')";
             if ($error)
             {
                 // S'il y a eu une erreur, on l'affiche

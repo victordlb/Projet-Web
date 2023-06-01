@@ -39,6 +39,14 @@
         }
 
         $requete = "INSERT INTO  panier (ID_panier, ID_article) VALUES ('$id_user','$bouton')" ;
+
+        $requete2 = "SELECT * FROM article WHERE ID_article = '$bouton';";
+        $results2 = mysqli_query($db_handle, $requete2);
+        $donnee = mysqli_fetch_assoc($results2);
+        if($donnee['type'] = 'nego'){
+            $requete3 = "INSERT INTO nego (ID_article, ID_acheteur, compteur, newprice, tour) VALUES ('$bouton', '$id_user', 0,'" . $data['prix'] . "', 'acheteur');";
+        }
+        
                 
         if ($error)
         {
