@@ -17,12 +17,15 @@
 <head>
     <meta charset="UTF-8">
     <title>Negociation</title>
+    <link rel="stylesheet" href="../css/style-general.css">
+    <link rel="stylesheet" href="../css/style-liste.css">
 </head>
 <body>
     <div id="container">
         <h1>Liste des Négociations</h1>
         <div id="content-container">
             <?php
+            echo "<a href='../php/panier.php'>quitter les nego</a>";
             $data = recup_data();
             $id_user = mysqli_fetch_assoc($data);
 
@@ -81,7 +84,7 @@
             } // End else
 
             // On ferme la connexion
-            mysqli_close($db_handle); 
+            mysqli_close($db_handle);
             ?>           
         </div>
     </div>

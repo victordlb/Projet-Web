@@ -26,7 +26,7 @@ $database = "piscine";
         $results2 = mysqli_query($db_handle, $requete2);
         while($data = mysqli_fetch_assoc($results2))
         {
-            $requete3 = "INSERT INTO histo (ID_histo, titre, description, prix, ID_vendeur, photo, categorie, date) VALUES ('$id_user', '" . $data['titre'] . "', '" . $data['description'] . "', '" . $data['prix'] . "', '" . $data['ID_vendeur'] . "', '" . $data['photo'] . "', '" . $data['categorie'] . "', '" . $data['date'] . "')";
+            $requete3 = "INSERT INTO histo (ID_user, titre, description, prix, ID_vendeur, photo, categorie, date) VALUES ('$id_user', '" . $data['titre'] . "', '" . $data['description'] . "', '" . $data['prix'] . "', '" . $data['ID_vendeur'] . "', '" . $data['photo'] . "', '" . $data['categorie'] . "', '" . $data['date'] . "')";
             $results3 = mysqli_query($db_handle, $requete3);
         }
             
