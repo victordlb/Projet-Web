@@ -188,7 +188,7 @@ while($auser = mysqli_fetch_assoc($data))
                             echo "<tr>";
                             echo "<td>" . $data['titre'] . "</td>";
                             echo "<td>" . $data['description'] . "</td>";
-                            echo "<td>" . $data['prix'] . "</td>";
+                            echo "<td>" . $data['prix'] . "$</td>";
                             echo "<td>" . $data['ID_vendeur'] . "</td>";
                             #echo "<td>" . "<img src='' height='120'>" . "</td>";
                             echo "<td></td>";

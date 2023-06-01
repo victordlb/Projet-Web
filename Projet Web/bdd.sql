@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: db:3306
--- Generation Time: May 31, 2023 at 11:43 AM
+-- Generation Time: May 31, 2023 at 08:58 PM
 -- Server version: 8.0.33
 -- PHP Version: 8.1.17
 
@@ -35,6 +35,13 @@ CREATE TABLE `acheteur` (
   `pays` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `acheteur`
+--
+
+INSERT INTO `acheteur` (`ID_acheteur`, `adresse`, `ville`, `codep`, `pays`) VALUES
+(5, '4 avenue de la terrasse', 'Montesson', 78360, 'France');
+
 -- --------------------------------------------------------
 
 --
@@ -62,6 +69,15 @@ CREATE TABLE `article` (
   `date` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `article`
+--
+
+INSERT INTO `article` (`ID_article`, `titre`, `description`, `prix`, `ID_vendeur`, `photo`, `categorie`, `date`) VALUES
+(1, 'Table', 'une table', 78, 3, '', 'livre', '2023-05-31'),
+(2, 'tshirt', 'blanc', 12, 3, '', 'vetement', '2023-05-31'),
+(3, 'ak47', 'fusil', 780, 3, '', 'arme', '2023-05-31');
+
 -- --------------------------------------------------------
 
 --
@@ -71,6 +87,13 @@ CREATE TABLE `article` (
 CREATE TABLE `auser` (
   `ID_auser` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `auser`
+--
+
+INSERT INTO `auser` (`ID_auser`) VALUES
+(3);
 
 -- --------------------------------------------------------
 
@@ -113,6 +136,13 @@ CREATE TABLE `infop` (
   `type` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `infop`
+--
+
+INSERT INTO `infop` (`ID_info`, `prenom`, `nom`, `cvc`, `expire`, `num`, `type`) VALUES
+(5, NULL, '', 0, '', '', '');
+
 -- --------------------------------------------------------
 
 --
@@ -126,6 +156,20 @@ CREATE TABLE `nego` (
   `compteur` int DEFAULT NULL,
   `newprice` int DEFAULT NULL,
   `tour` varchar(255) DEFAULT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `notif`
+--
+
+CREATE TABLE `notif` (
+  `ID_notif` int NOT NULL,
+  `type` varchar(255) DEFAULT NULL,
+  `date` date DEFAULT NULL,
+  `message` varchar(255) NOT NULL,
+  `ID_user` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
 -- --------------------------------------------------------
@@ -172,6 +216,15 @@ CREATE TABLE `user` (
   `status` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
 
+--
+-- Dumping data for table `user`
+--
+
+INSERT INTO `user` (`ID_user`, `nom`, `prenom`, `mail`, `password`, `avatar`, `fond`, `tel`, `pseudo`, `age`, `status`) VALUES
+(2, 'Nougarède', 'Paul', 'paul.nougarede78@gmail.com', '$2y$10$t3IEItTyUmL/lRjZQ9hpW.DcvV2H5SZIgAx7a6pCYodT7g30bhaS2', '../images/vinciphoto.jpg', NULL, '0644875489', 'blublu', 19, 'vendeur'),
+(3, 'Noug', 'Paul', 'p@p.com', '$2y$10$XRobioynTvpAxYN8dqUlqOK0ed0xkaH.FwFXlT1V.UEubAh.MM3Fi', '../images/', NULL, '0644875489', 'Paul', 19, 'vendeur'),
+(5, 'leveque', 'Martin', 'm@m.com', '$2y$10$/SRI.Y4jAPkOiyWiFiTIcuuRWVvZwvjXsnjp1THKQdxJZawNu8SvS', '../images/', NULL, '0644875489', 'Martin', 19, 'acheteur');
+
 -- --------------------------------------------------------
 
 --
@@ -181,6 +234,14 @@ CREATE TABLE `user` (
 CREATE TABLE `vendeur` (
   `ID_vendeur` int NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci;
+
+--
+-- Dumping data for table `vendeur`
+--
+
+INSERT INTO `vendeur` (`ID_vendeur`) VALUES
+(2),
+(3);
 
 --
 -- Indexes for dumped tables
@@ -240,11 +301,19 @@ ALTER TABLE `nego`
   ADD KEY `ID_article` (`ID_article`);
 
 --
+-- Indexes for table `notif`
+--
+ALTER TABLE `notif`
+  ADD PRIMARY KEY (`ID_notif`),
+  ADD KEY `ID_user` (`ID_user`);
+
+--
 -- Indexes for table `panier`
 --
 ALTER TABLE `panier`
-  ADD PRIMARY KEY (`ID_panier`),
-  ADD KEY `ID_article` (`ID_article`);
+  ADD PRIMARY KEY (`ID_article`),
+  ADD KEY `ID_article` (`ID_article`),
+  ADD KEY `ID_panier` (`ID_panier`);
 
 --
 -- Indexes for table `request`
@@ -273,13 +342,19 @@ ALTER TABLE `vendeur`
 -- AUTO_INCREMENT for table `article`
 --
 ALTER TABLE `article`
-  MODIFY `ID_article` int NOT NULL AUTO_INCREMENT;
+  MODIFY `ID_article` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `notif`
+--
+ALTER TABLE `notif`
+  MODIFY `ID_notif` int NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `ID_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `ID_user` int NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Constraints for dumped tables
@@ -335,6 +410,12 @@ ALTER TABLE `infop`
 ALTER TABLE `nego`
   ADD CONSTRAINT `nego_ibfk_1` FOREIGN KEY (`ID_acheteur`) REFERENCES `acheteur` (`ID_acheteur`) ON DELETE CASCADE ON UPDATE RESTRICT,
   ADD CONSTRAINT `nego_ibfk_2` FOREIGN KEY (`ID_article`) REFERENCES `article` (`ID_article`) ON DELETE CASCADE ON UPDATE RESTRICT;
+
+--
+-- Constraints for table `notif`
+--
+ALTER TABLE `notif`
+  ADD CONSTRAINT `notif_ibfk_1` FOREIGN KEY (`ID_user`) REFERENCES `user` (`ID_user`) ON DELETE CASCADE ON UPDATE RESTRICT;
 
 --
 -- Constraints for table `panier`

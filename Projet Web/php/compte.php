@@ -19,6 +19,7 @@ while($auser = mysqli_fetch_assoc($data))
     <title>Compte</title>
     <link rel="stylesheet" href="../css/style-compte.css">
     <link rel="stylesheet" href="../css/style-general.css">
+    <link rel="stylesheet" href="../css/style-liste.css">
 </head>
 <body>
     <h1>Votre Compte</h1>
@@ -50,7 +51,7 @@ while($auser = mysqli_fetch_assoc($data))
     $data = recup_data();
     while($auser = mysqli_fetch_assoc($data))
     {
-        echo "<div class='container'>";
+        echo "<div id='container'>";
         echo "<table>";
         echo "<caption id='gras'>Informations Personnelles</caption>"; 
         echo "<tr>";
@@ -94,7 +95,7 @@ while($auser = mysqli_fetch_assoc($data))
 
             while($info =  mysqli_fetch_assoc($result))
             {
-                echo "<div class='container'>";
+                echo "<div id='container'>";
                 echo "<table>";
                 echo "<caption id='gras'>Vos informations de livraison</caption>"; 
                 echo "<tr>";
@@ -109,16 +110,22 @@ while($auser = mysqli_fetch_assoc($data))
                 echo "<td>Pays : </td>";
                 echo "<td>" . $info['pays'] . "</td>";
             }
+            echo "</table>";
+            echo "</div>";
         }
         if($auser['status'] == 'vendeur')
         {
             $vendeur = true;
         }
     }
-    /*if($vendeur)
+    if($vendeur)
     {
-        echo "<a href=../php/nvlarticle.php>Ajouter un nouvel article</a>";
-    }*/
+        echo "<a href='../php/historique.php'>Voir votre historique de vente</a>";
+    }
+    else
+    {
+        echo "<a href='../php/historique.php'>Voir votre historique d'achat</a>";
+    }
 
     ?>
 

@@ -1,14 +1,9 @@
 <?php
 include '../php/db.php' ;
 $data = recup_data();
-$vendeur = true;
 while($auser = mysqli_fetch_assoc($data))
 {
     $id_user = $auser['ID_user'];
-    if($auser['status'] == 'acheteur')
-    {
-        $vendeur = false;
-    }
 }
 ?>
 
@@ -16,36 +11,19 @@ while($auser = mysqli_fetch_assoc($data))
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Panier</title>
     <link rel="stylesheet" href="../css/style-general.css">
     <link rel="stylesheet" href="../css/style-liste.css">
+    <title>Paiement</title>
 </head>
 <body>
-    <h1>Votre Panier</h1>
-    <a href=../php/connexion.php>Retourner a la page de connexion</a>
-
-    <nav class="navbar">
-        <ul>
-            <li><a href="../php/accueil.php">Accueil</a></li>
-            <li><a href="../php/parcourir.php">Tout Parcourir</a></li>
-            <li><a href="../php/notifications.php">Notifications</a></li>
-            <?php
-                if($vendeur)
-                {
-                    echo "<li><a href='../php/vosArticles.php'>Vos Articles</a></li>";
-                }
-                else
-                {
-                    echo "<li><a href='../php/panier.php'>Panier</a></li>";
-                }
-            ?>
-            <li><a href="../php/compte.php">Votre Compte</a></li>
-        </ul>
-    </nav>
+    <h1>Paiement en ligne</h1>
 
     <div id="container">
-        <h1>Article de votre panier</h1>
+        <h2>Liste des articles de votre commande</h2>
+        <a href="../php/panier.php">Retourner a votre panier</a>
         <?php
+        $prix = 0;
+
         $database = "piscine";
         $db_handle = mysqli_connect('db', 'root', 'mypassword', $database);
         $db_found = mysqli_select_db($db_handle, $database);
@@ -57,7 +35,7 @@ while($auser = mysqli_fetch_assoc($data))
         else
         {
             $error = "";
-            $requete = "SELECT * FROM article,panier WHERE $id_user = panier.ID_panier AND article.ID_article = panier.ID_article" ;
+            $requete = "SELECT * FROM panier,article WHERE $id_user = panier.ID_panier AND article.ID_article = panier.ID_article" ;
                     
             if ($error)
             {
@@ -70,18 +48,16 @@ while($auser = mysqli_fetch_assoc($data))
                 // Regarder s'il y a des resultats
                 if (!$results || mysqli_num_rows($results) == 0) {
                     echo "<p>Panier vide.</p>";
-                } else {
+                } 
+                else 
+                {
                     // On affiche les joueurs
                     echo '
                         <table>
                             <tr>
                                 <th>Titre</th>
-                                <th>Description</th>
                                 <th>Prix</th>
-                                <th>Vendeur</th>
                                 <th>Photo</th>
-                                <th>Catégorie</th>
-                                <th>Date</th>
                             </tr>
                     ';
                     //afficher le resultat
@@ -89,24 +65,47 @@ while($auser = mysqli_fetch_assoc($data))
                     while ($data = mysqli_fetch_assoc($results)) {
                         echo "<tr>";
                         echo "<td>" . $data['titre'] . "</td>";
-                        echo "<td>" . $data['description'] . "</td>";
                         echo "<td>" . $data['prix'] . "$</td>";
-                        echo "<td>" . $data['ID_vendeur'] . "</td>";
+                        $prix = $prix + $data['prix'];
                         #echo "<td>" . "<img src='' height='120'>" . "</td>";
-                        echo "<td></td>";
-                        echo "<td>" . $data['categorie'] . "</td>";
-                        echo "<td>" . $data['date'] . "</td>";
-                        echo '<td><form method="get" action="supprimer-panier.php"><button type="submit" name="supp" value="' . $data['ID_article'] . '">Supprimer</button></td></form>';
+                        echo "<td></td>";;
                         echo "</tr>";
                     }
                     echo "</table>";
                 }
             }
+            echo "<p>Prix total : " . $prix . "$</p>";
+
+            $requete2 = "SELECT * FROM infop WHERE '$id_user' = ID_info ";
+            $result = mysqli_query($db_handle, $requete2);
+
+            while($info =  mysqli_fetch_assoc($result))
+            {
+                echo "<div class='container'>";
+                echo "<table>";
+                echo "<caption id='gras'>Vos informations de paiement</caption>"; 
+                echo "<tr>";
+                echo "<td>Numero : </td>";
+                echo "<td>" . $info['num'] . "</td>";
+                echo "</tr>";
+                echo "<tr>";
+                echo "<td>Nom du titulaire : </td>";
+                echo "<td>" . $info['nom'] . "</td>";
+                echo "</tr>";
+                echo "<tr>";
+                echo "<td>Date d'expiration : </td>";
+                echo "<td>" . $info['expire'] . "</td>";
+            }
+            echo "</table>";
+
+            mysqli_close($db_handle); 
+
+        
         }
-        mysqli_close($db_handle); 
 
         ?>
     </div>
-    <a class="paiement" href="../php/paiement-panier.php">Valider votre panier et payer</a>
+    <a href="../php/paiement-direct.php">Payer</a>
+    
 </body>
 </html>
