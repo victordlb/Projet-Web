@@ -21,11 +21,12 @@ $database = "piscine";
     {
         $error = "";
         $requete = "DELETE FROM panier WHERE ID_panier = '$id_user'" ;
-        $requete2 = "SELECT * FROM panier WHERE ID_panier = '$id_user'";
+        $requete2 = "SELECT * FROM article WHERE ID_article IN (SELECT ID_article FROM panier WHERE ID_panier = $id_user)";
+        $requete4 = "DELETE FROM article WHERE ID_article IN (SELECT ID_article FROM panier WHERE ID_panier = $id_user);";
         $results2 = mysqli_query($db_handle, $requete2);
         while($data = mysqli_fetch_assoc($results2))
         {
-            $requete3 = "INSERT INTO histo (ID_histo, ID_article) VALUES ('$id_user', '" . $data['ID_article'] . "')";
+            $requete3 = "INSERT INTO histo (ID_histo, titre, description, prix, ID_vendeur, photo, categorie, date) VALUES ('$id_user', '" . $data['titre'] . "', '" . $data['description'] . "', '" . $data['prix'] . "', '" . $data['ID_vendeur'] . "', '" . $data['photo'] . "', '" . $data['categorie'] . "', '" . $data['date'] . "')";
             $results3 = mysqli_query($db_handle, $requete3);
         }
             
@@ -36,6 +37,7 @@ $database = "piscine";
         } 
         else 
         {
+            $results4 = mysqli_query($db_handle, $requete4);
             $results = mysqli_query($db_handle, $requete);
         }
     }
