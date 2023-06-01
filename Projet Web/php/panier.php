@@ -87,17 +87,19 @@ while($auser = mysqli_fetch_assoc($data))
                     //afficher le resultat
                     $compteur = 0;
                     while ($data = mysqli_fetch_assoc($results)) {
-                        echo "<tr>";
-                        echo "<td>" . $data['titre'] . "</td>";
-                        echo "<td>" . $data['description'] . "</td>";
-                        echo "<td>" . $data['prix'] . "$</td>";
-                        echo "<td>" . $data['ID_vendeur'] . "</td>";
-                        #echo "<td>" . "<img src='' height='120'>" . "</td>";
-                        echo "<td></td>";
-                        echo "<td>" . $data['categorie'] . "</td>";
-                        echo "<td>" . $data['date'] . "</td>";
-                        echo '<td><form method="get" action="supprimer-panier.php"><button type="submit" name="supp" value="' . $data['ID_article'] . '">Supprimer</button></td></form>';
-                        echo "</tr>";
+                        if($data['type'] == 'direct'){
+                            echo "<tr>";
+                            echo "<td>" . $data['titre'] . "</td>";
+                            echo "<td>" . $data['description'] . "</td>";
+                            echo "<td>" . $data['prix'] . "$</td>";
+                            echo "<td>" . $data['ID_vendeur'] . "</td>";
+                            #echo "<td>" . "<img src='' height='120'>" . "</td>";
+                            echo "<td></td>";
+                            echo "<td>" . $data['categorie'] . "</td>";
+                            echo "<td>" . $data['date'] . "</td>";
+                            echo '<td><form method="get" action="supprimer-panier.php"><button type="submit" name="supp" value="' . $data['ID_article'] . '">Supprimer</button></td></form>';
+                            echo "</tr>";
+                        }
                     }
                     echo "</table>";
                 }
@@ -107,6 +109,7 @@ while($auser = mysqli_fetch_assoc($data))
 
         ?>
     </div>
+    <a class="nego" href="../php/negociation.php">Voir les négociations en cours</a>
     <a class="paiement" href="../php/paiement-panier.php">Valider votre panier et payer</a>
 </body>
 </html>

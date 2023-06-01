@@ -111,6 +111,7 @@ while($auser = mysqli_fetch_assoc($data))
 
     </div>
 
+    <a class="nego" href="../php/negociation.php">Voir les négociations en cours</a>
     <a href=../php/nvlarticle.php>Ajouter un nouvel article</a>
 </body>
 </html>

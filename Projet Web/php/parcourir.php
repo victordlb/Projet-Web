@@ -180,10 +180,10 @@ while($auser = mysqli_fetch_assoc($data))
                                     <th>Photo</th>
                                     <th>Catégorie</th>
                                     <th>Date</th>
+                                    <th>Type</th>
                                 </tr>
                         ';
                         //afficher le resultat
-                        $compteur = 0;
                         while ($data = mysqli_fetch_assoc($results)) {
                             echo "<tr>";
                             echo "<td>" . $data['titre'] . "</td>";
@@ -194,6 +194,7 @@ while($auser = mysqli_fetch_assoc($data))
                             echo "<td></td>";
                             echo "<td>" . $data['categorie'] . "</td>";
                             echo "<td>" . $data['date'] . "</td>";
+                            echo "<td>" . $data['type'] . "</td>";
                             if(!$vendeur)
                             {
                                 echo '<td><form method="get" action="ajoutPanier.php"><button type="submit" name="ajout" value="' . $data['ID_article'] . '">Ajouter au panier</button></td></form>';
