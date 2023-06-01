@@ -22,7 +22,7 @@ $database = "piscine";
     else
     {
         $error = "";
-        $requete = "SELECT * FROM histo WHERE ID_histo = '$id_user';";
+        $requete = "SELECT * FROM histo WHERE ID_user = '$id_user';";
         if ($error)
         {
             // S'il y a eu une erreur, on l'affiche

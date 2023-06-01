@@ -94,7 +94,7 @@ $date1 = date('d/m/Y');
         else
         {
             $error = "";
-            $requete = "INSERT INTO article (ID_vendeur, titre, prix, description, date, photo, categorie) VALUES ('$id_vendeur','$titre', '$prix', '$description', '$date', '$photo', '$categorie', '$type')";
+            $requete = "INSERT INTO article (ID_vendeur, titre, prix, description, date, photo, categorie, type) VALUES ('$id_vendeur','$titre', '$prix', '$description', '$date', '$photo', '$categorie', '$type')";
             if ($error)
             {
                 // S'il y a eu une erreur, on l'affiche

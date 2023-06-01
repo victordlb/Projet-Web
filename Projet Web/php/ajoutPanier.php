@@ -43,9 +43,7 @@
         $requete2 = "SELECT * FROM article WHERE ID_article = '$bouton';";
         $results2 = mysqli_query($db_handle, $requete2);
         $donnee = mysqli_fetch_assoc($results2);
-        if($donnee['type'] = 'nego'){
-            $requete3 = "INSERT INTO nego (ID_article, ID_acheteur, compteur, newprice, tour) VALUES ('$bouton', '$id_user', 0,'" . $data['prix'] . "', 'acheteur');";
-        }
+        $requete3 = "INSERT INTO nego (ID_article, ID_acheteur, compteur, newprice, tour) VALUES ('$bouton', '$id_user', '0','" . $donnee['prix'] . "', 'acheteur');";
         
                 
         if ($error)
@@ -55,10 +53,14 @@
         } 
         else 
         {
-            if($stop != 7)
+            if($stop != 7 AND $donnee['type'] == 'direct')
             {
                 $results = mysqli_query($db_handle, $requete);
             }
+            elseif($stop != 7 AND $donnee['type'] == 'nego'){
+                $results = mysqli_query($db_handle, $requete3);
+            }
+
 
         }
     }
