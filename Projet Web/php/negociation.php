@@ -94,6 +94,9 @@
                                     </form>
                                 </td>';
                             }
+                            if($data['compteur'] == 5){
+                                echo "<td>Désacord</td>";
+                            }
 
                             echo "</tr>";
                         }
