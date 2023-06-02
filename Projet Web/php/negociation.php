@@ -74,6 +74,27 @@
                             echo "<td>" . $data['newprice'] . "</td>";
                             echo "<td>" . $data['compteur'] . "</td>";
                             echo "<td>" . $data['tour'] . "</td>";
+                            if(!$vendeur && $data['tour'] == 'acheteur'){
+                                echo '<td>
+                                    <form action="modifier_prix.php" method="post">
+                                        <input type="number" step="0.01" name="prix" id="prix">
+                                        <input type="hidden" name="nego_id" value="' . $data['ID_nego'] . '">
+                                        <input type="hidden" name="compteur" value="' . $data['compteur'] . '">
+                                        <input type="submit" value="Modifier">
+                                    </form>
+                                </td>';
+                            }
+                            if($vendeur && $data['tour'] == 'vendeur'){
+                                echo '<td>
+                                    <form action="process_nego.php" method="post">
+                                        <input type="hidden" name="nego_id" value="' . $data['ID_nego'] . '">
+                                        <input type="hidden" name="compteur" value="' . $data['compteur'] . '">
+                                        <input type="submit" name="accepter" value="Accepter">
+                                        <input type="submit" name="decliner" value="Décliner">
+                                    </form>
+                                </td>';
+                            }
+
                             echo "</tr>";
                         }
                         echo "</table>";
