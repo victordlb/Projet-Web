@@ -185,11 +185,14 @@ while($auser = mysqli_fetch_assoc($data))
                         ';
                         //afficher le resultat
                         while ($data = mysqli_fetch_assoc($results)) {
+                            $requete2 = "SELECT * FROM user WHERE ID_user =" . $data['ID_vendeur'];
+                            $results2 = mysqli_query($db_handle, $requete2);
+                            $data2 = mysqli_fetch_assoc($results2);
                             echo "<tr>";
                             echo "<td>" . $data['titre'] . "</td>";
                             echo "<td>" . $data['description'] . "</td>";
                             echo "<td>" . $data['prix'] . "$</td>";
-                            echo "<td>" . $data['ID_vendeur'] . "</td>";
+                            echo "<td>" . $data2['pseudo'] . "</td>";
                             #echo "<td>" . "<img src='' height='120'>" . "</td>";
                             echo "<td></td>";
                             echo "<td>" . $data['categorie'] . "</td>";
