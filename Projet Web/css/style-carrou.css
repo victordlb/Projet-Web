@@ -1,0 +1,52 @@
+#carrousel {
+    display: flex;
+}
+
+#carrousel img {
+    margin-left: auto;
+    margin-right: auto;
+    border-radius: 6px;
+    transition: 500;
+    height: 300;
+    width: 600;
+}
+
+#controles {
+    display: flex;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+
+button {
+    margin-left: auto;
+    margin-right: auto;
+    background-color: #2ea44f;
+    color: white;
+    border-radius: 6px;
+    cursor: pointer;
+    /* Afficher une main quand on passe la souris dessus */
+    padding: 6px 16px;
+    line-height: 20px;
+    font-size: 14px;
+    font-weight: 600;
+}
+
+button:hover {
+    background-color: #207137;
+}
+
+#defilement {
+    min-width: 200px;
+    /* On force une taille minimale pour éviter que la taille du bouton change quand son texte change */
+}
+
+.image-navigation {
+    width: 90px;
+    height: 50px;
+    object-fit: cover;
+    /* Zoomer sur l'image plutôt que déformer en cas de taille différente */
+    border-radius: 6px;
+    margin-left: 7px;
+    margin-right: 7px;
+    cursor: pointer;
+}

@@ -20,6 +20,9 @@ while($auser = mysqli_fetch_assoc($data))
 <head>
     <meta charset="UTF-8">
     <link rel="stylesheet" href="../css/style-general.css">
+    <link rel="stylesheet" href="../css/style-carrou.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <script type="text/javascript" src="../js/carrousselAccueil.js"></script>
     <title>Accueil</title>
 </head>
 <body>
@@ -52,6 +55,18 @@ while($auser = mysqli_fetch_assoc($data))
             <li><a href="../php/compte.php">Votre Compte</a></li>
         </ul>
     </nav>
+
+    <div id="carrousel">
+        <img src="../photos/ak.jpeg" />
+        <img src="../photos/v.jpeg" />
+        <img src="../photos/livre.jpeg" />
+    </div>
+
+    <div id="controles">
+        <button id="precedent">Precédent</button>
+        <button id="defilement">Désactiver le défilement</button>
+        <button id="suivant">Suivant</button>
+    </div>
 
 </body>
 </html>
