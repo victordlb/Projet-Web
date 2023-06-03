@@ -82,6 +82,13 @@ function inscription_utilisateur($pseudo, $prenom,$nom,$mail,$age,$tel,$option, 
                 mysqli_stmt_bind_param($stmtVendeur, 'i', $ID_Utilisateur);
                 mysqli_stmt_execute($stmtVendeur);
             }
+            if($option == 'admin')
+            {
+                // Insertion de l'admin
+                $stmtAdmin = mysqli_prepare($db_handle, "INSERT INTO admin (ID_admin) VALUES (?)");
+                mysqli_stmt_bind_param($stmtAdmin, 'i', $ID_Utilisateur);
+                mysqli_stmt_execute($stmtAdmin);
+            }
             if($option == 'acheteur')
             {
                 // Insertion de l'acheteur

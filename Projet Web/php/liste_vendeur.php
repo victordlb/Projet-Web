@@ -24,7 +24,7 @@ while($auser = mysqli_fetch_assoc($data))
     <title>Article</title>
 </head>
 <body>
-    <h1>Vos Articles</h1>
+    <h1>Les vendeurs</h1>
     <a href=../php/connexion.php>Retourner a la page de connexion</a>
 
     <nav class="navbar">
@@ -53,7 +53,7 @@ while($auser = mysqli_fetch_assoc($data))
         </ul>
     </nav>
     <div id="container">
-        <h1>Vos articles mis en ventes</h1>
+        <h1>Les vendeurs du site</h1>
         <?php
             $data = recup_data();
             while($auser = mysqli_fetch_assoc($data))
@@ -71,7 +71,7 @@ while($auser = mysqli_fetch_assoc($data))
             else
             {
                 $error = "";
-                $requete = "SELECT * FROM article WHERE ID_vendeur = $ID_user " ;
+                $requete = "SELECT * FROM user WHERE ID_user IN(SELECT * FROM vendeur)" ;
                     
                 if ($error)
                 {
@@ -84,13 +84,14 @@ while($auser = mysqli_fetch_assoc($data))
                     echo '
                             <table>
                                 <tr>
-                                    <th>Titre</th>
-                                    <th>Description</th>
-                                    <th>Prix</th>
-                                    <th>Vendeur</th>
-                                    <th>Photo</th>
-                                    <th>Catégorie</th>
-                                    <th>Date</th>
+                                    <th>Nom</th>
+                                    <th>Paul</th>
+                                    <th>Mail</th>
+                                    <th>Avatar</th>
+                                    <th>Pseudo</th>
+                                    <th>Age</th>
+                                    <th>Status</th>
+                                    <th>Action</th>
                                 </tr>
                             ';
                     //afficher le resultat
@@ -99,15 +100,15 @@ while($auser = mysqli_fetch_assoc($data))
                     while ($aff = mysqli_fetch_assoc($results)) 
                     {
                         echo "<tr>";
-                        echo "<td>" . $aff['titre'] . "</td>";
-                        echo "<td>" . $aff['description'] . "</td>";
-                        echo "<td>" . $aff['prix'] . "</td>";
-                        echo "<td>" . $aff['ID_vendeur'] . "</td>";
+                        echo "<td>" . $aff['nom'] . "</td>";
+                        echo "<td>" . $aff['prenom'] . "</td>";
+                        echo "<td>" . $aff['mail'] . "</td>";
                         #echo "<td>" . "<img src='' height='120'>" . "</td>";
                         echo "<td></td>";
-                        echo "<td>" . $aff['categorie'] . "</td>";
-                        echo "<td>" . $aff['date'] . "</td>";
-                        echo '<td><form method="get" action="suppression.php"><button type="submit" name="supp" value="' . $aff['ID_article'] . '">Supprimer</button></td></form>';
+                        echo "<td>" . $aff['pseudo'] . "</td>";
+                        echo "<td>" . $aff['age'] . "</td>";
+                        echo "<td>" . $aff['status'] . "</td>";
+                        echo '<td><form method="get" action="suppressionVendeur.php"><button type="submit" name="supp" value="' . $aff['ID_user'] . '">Supprimer</button></td></form>';
                         echo "</tr>";
                     }
                     echo "</table>";
