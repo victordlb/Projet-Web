@@ -1,16 +1,19 @@
 <?php
 include '../php/db.php' ;
 $data = recup_data();
-$vend = true;
+$vendeur = true;
+$admin = false;
 while($auser = mysqli_fetch_assoc($data))
 {
     if($auser['status'] == 'acheteur')
     {
-        $vend = false;
+        $vendeur = false;
+    }
+    elseif($auser['status'] == 'admin'){
+        $admin = true;
     }
 }
 ?>
-
 
 <!DOCTYPE html>
 <html lang="en">
@@ -27,15 +30,22 @@ while($auser = mysqli_fetch_assoc($data))
 
     <nav class="navbar">
         <ul>
-            <li><a href="../php/accueil.php">Accueil</a></li>
-            <li><a href="../php/parcourir.php">Tout Parcourir</a></li>
+        <li><a href="../php/accueil.php">Accueil</a></li>
+            <?php
+            if($admin){
+                echo "<li><a href='../php/liste_vendeur.php'>Vendeurs</a></li>";
+            }
+            else{
+                echo "<li><a href='../php/parcourir.php'>Tout Parcourir</a></li>";
+            }
+            ?>
             <li><a href="../php/notifications.php">Notifications</a></li>
             <?php
-                if($vend)
+                if($vendeur OR $admin)
                 {
                     echo "<li><a href='../php/vosArticles.php'>Vos Articles</a></li>";
                 }
-                else
+                elseif(!$vendeur AND !$admin)
                 {
                     echo "<li><a href='../php/panier.php'>Panier</a></li>";
                 }

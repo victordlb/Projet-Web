@@ -61,6 +61,7 @@ include_once 'log.php' ;
                                 <option value="" disabled selected hidden>Sélectionnez une option</option>
                                 <option value="acheteur">Acheter des articles</option>
                                 <option value="vendeur">Vendre des articles</option>
+                                <option value="admin">Compte admin </option>
                             </select>
                         </td>
                     </tr>
