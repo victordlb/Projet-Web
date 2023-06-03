@@ -77,7 +77,7 @@ while($auser = mysqli_fetch_assoc($data))
                     //afficher le resultat
                     while ($data = mysqli_fetch_assoc($results)) {
                         $requete2 = "SELECT * FROM user WHERE ID_user =" . $data['ID_user'];
-                        $results2 = mysqli_query($db_handle, $requete);
+                        $results2 = mysqli_query($db_handle, $requete2);
                         $data2 = mysqli_fetch_assoc($results2);
                         echo "<tr>";
                         echo "<td>" . $data['type'] . "</td>";
