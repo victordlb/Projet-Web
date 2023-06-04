@@ -43,7 +43,20 @@ include_once 'log.php' ;
                     </tr>
                     <tr>
                         <td>Photo</td>
-                        <td><input type="file" name="photo" accept="image/*"></td>
+                        <td>
+                            <select id="options" name="options2" required onchange="ajout_attributs()">
+                                <option value="" disabled selected hidden>Sélectionnez une option</option>
+                                <option value="a1.jpg">homme 1</option>
+                                <option value="a2.jpg">femme 1</option>
+                                <option value="a3.jpg">homme 2</option>
+                                <option value="a4.jpg">homme 3</option>
+                                <option value="a5.jpg">femme 2</option>
+                                <option value="a6.jpg">femme 3</option>
+                                <option value="a7.jpg">homme 4</option>
+                                <option value="a8.jpg">femme 4</option>
+                                <option value="a9.jpg">homme 5</option>
+                            </select>
+                        </td>
                     </tr>
                     <tr>
                         <td>Fond d'ecran</td>
@@ -99,8 +112,9 @@ include_once 'log.php' ;
         $codep = isset($_POST["codep"]) ? $_POST["codep"] : "";
         $pays = isset($_POST["pays"]) ? $_POST["pays"] : "";
 
-        $photo = isset($_FILES["photo"]) ? $_FILES["photo"] : "";
-        $file_name = "../images/" . $photo['name'];
+        $photo = isset($_POST["options2"]) ? $_POST["options2"] : "";
+        $file_name = "../photos/";
+        $file_name .= $photo;
 
         $typec = isset($_POST["typec"]) ? $_POST["typec"] : "";
         $numeroc = isset($_POST["numeroc"]) ? $_POST["numeroc"] : "";

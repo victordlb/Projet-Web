@@ -91,6 +91,7 @@ while($auser = mysqli_fetch_assoc($data))
                                     <th>Avatar</th>
                                     <th>Pseudo</th>
                                     <th>Age</th>
+                                    <th>Avatar</th>
                                     <th>Status</th>
                                     <th>Action</th>
                                 </tr>
@@ -104,10 +105,9 @@ while($auser = mysqli_fetch_assoc($data))
                         echo "<td>" . $aff['nom'] . "</td>";
                         echo "<td>" . $aff['prenom'] . "</td>";
                         echo "<td>" . $aff['mail'] . "</td>";
-                        #echo "<td>" . "<img src='' height='120'>" . "</td>";
-                        echo "<td></td>";
                         echo "<td>" . $aff['pseudo'] . "</td>";
                         echo "<td>" . $aff['age'] . "</td>";
+                        echo "<td>" . "<img src='". $auser['avatar']. "' height='30'; width='30'></td>";
                         echo "<td>" . $aff['status'] . "</td>";
                         echo '<td><form method="get" action="suppressionVendeur.php"><button type="submit" name="supp" value="' . $aff['ID_user'] . '">Supprimer</button></td></form>';
                         echo "</tr>";

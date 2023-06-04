@@ -13,7 +13,7 @@ while($auser = mysqli_fetch_assoc($data))
     elseif($auser['status'] == 'admin'){
         $admin = true;
     }
-
+    
 }
 ?>
 

@@ -83,6 +83,10 @@ while($auser = mysqli_fetch_assoc($data))
         echo "<td>" . $auser['tel'] . "</td>";
         echo "</tr>";
         echo "<tr>";
+        echo "<td>Avatar : </td>";
+        echo "<td>" . "<img src='". $auser['avatar']. "' height='30'; width='30'></td>";
+        echo "</tr>";
+        echo "<tr>";
         echo "<td>Age : </td>";
         echo "<td>" . $auser['age'] . "ans</td>";
         echo "</tr>";
