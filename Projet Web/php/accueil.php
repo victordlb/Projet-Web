@@ -69,6 +69,27 @@ while($auser = mysqli_fetch_assoc($data))
         <button id="suivant">Suivant</button>
     </div>
 
+    <section id="presentation">
+      <h2>Présentation</h2>
+      <p id="presentation-text">Bienvenue sur FNAH, votre nouvelle plateforme de vente en ligne ! Chez FNAH, nous offrons une expérience unique qui permet à des vendeurs passionnés de mettre en vente leurs produits et à des acheteurs avides de découvrir de nouvelles opportunités d'achat. <br></br>
+
+		Notre plateforme est conçue pour offrir une variété de types de vente afin de répondre à tous vos besoins. Que vous soyez un vendeur cherchant à commercialiser vos produits, ou un acheteur à la recherche d'offres exclusives, FNAH est l'endroit idéal pour vous. <br></br>
+
+		En tant que vendeur sur FNAH, vous bénéficiez d'un espace dédié où vous pouvez créer et gérer vos annonces en toute simplicité. Mettez en valeur vos produits grâce à des descriptions détaillées, des images attractives et des vidéos explicatives. Vous pouvez choisir entre trois types de vente : <br></br>
+
+		Vente normale : Vous fixez un prix fixe pour vos produits et les acheteurs peuvent les acheter directement. C'est idéal pour ceux qui préfèrent une transaction simple et rapide. <br></br>
+
+		Vente aux enchères : Vous avez la possibilité de mettre vos produits aux enchères, permettant ainsi aux acheteurs de faire des offres et de participer à une compétition amicale pour obtenir votre produit. Les enchères apportent une touche d'excitation et peuvent vous permettre d'obtenir des prix plus élevés pour vos produits. <br></br>
+
+		Transaction client-vendeur : Cette option permet aux acheteurs et aux vendeurs d'interagir directement pour négocier les prix, les quantités, ou d'autres conditions de vente spécifiques. Cette fonctionnalité est idéale pour les produits personnalisables ou pour ceux qui préfèrent une approche plus directe. <br></br>
+
+		Lorsque vous êtes acheteur sur FNAH, vous pouvez explorer une multitude de produits de différentes catégories. Que vous recherchiez des livres, des gadgets électroniques, des films, de la musique, des jeux vidéo ou bien plus encore, FNAH est votre destination incontournable pour trouver ce que vous désirez. En créant un compte sur notre site, vous pourrez sauvegarder vos produits préférés, suivre les vendeurs que vous aimez et profiter de recommandations personnalisées selon vos intérêts.<br></br>
+
+		Chez FNAH, nous accordons une grande importance à la sécurité des transactions. Nous mettons en place des mesures de sécurité avancées pour protéger vos informations personnelles et financières. De plus, notre équipe de service client est toujours prête à vous aider en cas de besoin, que ce soit pour répondre à vos questions ou pour résoudre d'éventuels problèmes.<br></br>
+
+		Rejoignez-nous dès maintenant sur FNAH et découvrez une expérience de vente en ligne unique, où les vendeurs rencontrent les acheteurs dans un environnement convivial et sécurisé. Que vous cherchiez à vendre vos produits ou à dénicher des trésors cachés, FNAH est là pour vous accompagner tout au long de votre parcours d'achat et de vente en ligne.<br></br></p>
+    </section>
+
     <footer style="background-color: #585858;padding: 10px;bottom: 0;width: 100%;height: 100px;display: flex;align-items: center;"> 
         <p>Contactez-nous : agorafrancia@gmail.com
         <br>Téléphone : 06.12.13.14.15</p>

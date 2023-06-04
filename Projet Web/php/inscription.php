@@ -44,7 +44,7 @@ include_once 'log.php' ;
                     <tr>
                         <td>Photo</td>
                         <td>
-                            <select id="options" name="options2" required onchange="ajout_attributs()">
+                            <select id="options2" name="options2" required onchange="ajout_attributs()">
                                 <option value="" disabled selected hidden>Sélectionnez une option</option>
                                 <option value="a1.jpg">homme 1</option>
                                 <option value="a2.jpg">femme 1</option>

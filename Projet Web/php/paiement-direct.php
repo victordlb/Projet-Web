@@ -63,6 +63,22 @@
         {
             $results4 = mysqli_query($db_handle, $requete4);
             $results = mysqli_query($db_handle, $requete);
+            $requete5 = "SELECT * FROM user WHERE ID_user = $id_user";
+            $results5 = mysqli_query($db_handle, $requete5);
+            $data5 = mysqli_fetch_assoc($results5);
+            $personne = $data5['mail'];
+            $article = $data['titre'];
+            $subject = "Envoie de '$article'";
+            $message = "Votre article est envoyé";
+            // Envoyer l'e-mail
+            $mailSent = mail($personne, $subject, $message);
+
+            // Vérifier si l'e-mail a été envoyé avec succès
+            if ($mailSent) {
+                echo "L'e-mail a été envoyé avec succès.";
+            } else {
+                echo "Une erreur s'est produite lors de l'envoi de l'e-mail.";
+            }
         }
     }
     mysqli_close($db_handle); 
