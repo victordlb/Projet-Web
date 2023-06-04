@@ -27,9 +27,11 @@ while($auser = mysqli_fetch_assoc($data))
     <title>Accueil</title>
 </head>
 <body>
-    
+
     <h1>Bienvenue sur la page d'accueil</h1>
+    <img src="../photos/logo.jpg" width= '60'; height= '60'/>
     <a href=../php/connexion.php>Retourner a la page de connexion</a>
+
 
     <nav class="navbar">
         <ul>
@@ -90,7 +92,7 @@ while($auser = mysqli_fetch_assoc($data))
 		Rejoignez-nous dès maintenant sur FNAH et découvrez une expérience de vente en ligne unique, où les vendeurs rencontrent les acheteurs dans un environnement convivial et sécurisé. Que vous cherchiez à vendre vos produits ou à dénicher des trésors cachés, FNAH est là pour vous accompagner tout au long de votre parcours d'achat et de vente en ligne.<br></br></p>
     </section>
 
-    <footer style="background-color: #585858;padding: 10px;bottom: 0;width: 100%;height: 100px;display: flex;align-items: center;"> 
+    <footer style="background-color: #585858;padding: 10px;bottom: 0;width: 100%;height: 100px;display: flex;align-items: center;margin-bottom: auto;"> 
         <p>Contactez-nous : agorafrancia@gmail.com
         <br>Téléphone : 06.12.13.14.15</p>
         <div style="margin-left: auto;">

@@ -126,7 +126,7 @@ while($auser = mysqli_fetch_assoc($data))
     <a class="nego" href="../php/negociation.php">Voir les négociations en cours</a><br>
     <a href=../php/nvlarticle.php>Ajouter un nouvel article</a>
 
-    <footer style="background-color: #585858;padding: 10px;bottom: 0;width: 100%;height: 100px;display: flex;align-items: center;"> 
+    <footer style="background-color: #585858;padding: 10px;bottom: 0;width: 100%;height: 100px;display: flex;align-items: center;margin-bottom: auto;"> 
         <p>Contactez-nous : agorafrancia@gmail.com
         <br>Téléphone : 06.12.13.14.15</p>
         <div style="margin-left: auto;">

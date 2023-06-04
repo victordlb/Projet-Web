@@ -127,7 +127,7 @@ while($auser = mysqli_fetch_assoc($data))
     <a href=../php/inscription.php>Ajouter un vendeur</a>
 
     <a href=../php/nvlarticle.php>Ajouter un nouveaux vendeur</a>
-    <footer style="background-color: #585858;padding: 10px;bottom: 0;width: 100%;height: 100px;display: flex;align-items: center;"> 
+    <footer style="background-color: #585858;padding: 10px;bottom: 0;width: 100%;height: 100px;display: flex;align-items: center;margin-bottom: auto;"> 
         <p>Contactez-nous : agorafrancia@gmail.com
         <br>Téléphone : 06.12.13.14.15</p>
         <div style="margin-left: auto;">
